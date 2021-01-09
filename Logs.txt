@@ -15,3 +15,13 @@
 2021-01-09 04:19:35 SYSTEM NameError bei der Initialisierung.
 2021-01-09 04:19:52 dasBaum(293906586319978497) hat den Member Command genutzt
 2021-01-09 04:19:55 dasBaum(293906586319978497) hat den Channel Command genutzt
+2021-01-09 09:28:29 SYSTEM NameError bei der Initialisierung.
+2021-01-09 09:48:02 Insecure VirJhin | Ben(316985703152091146) hat den Member Command genutzt
+2021-01-09 10:06:02 SYSTEM NameError bei der Initialisierung.
+2021-01-09 10:08:20 Insecure VirJhin | Ben(316985703152091146) hat den Member Command genutzt
+2021-01-09 10:08:34 Insecure VirJhin | Ben(316985703152091146) hat den Channel Command genutzt
+2021-01-09 10:09:33 Insecure VirJhin | Ben(316985703152091146) hat den Channel Command genutzt
+2021-01-09 10:09:42 Insecure VirJhin | Ben(316985703152091146) hat den Member Command genutzt
+2021-01-09 10:10:34 Insecure VirJhin | Ben(316985703152091146) hat den Member Command genutzt
+2021-01-09 10:11:08 Insecure VirJhin | Ben(316985703152091146) hat den Ping Command genutzt
+2021-01-09 11:54:45 SYSTEM NameError bei der Initialisierung.
