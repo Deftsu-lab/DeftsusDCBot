@@ -1,16 +1,21 @@
-# This is a sample Python script.
+# Importiert die Library für die Standard OS Funktionen
+import os
+#Importiert die Library für den Discord Client
+import discord
+#Importiert die die commands Funktionen aus discord.ext
+from discord.ext import commands
+#Importiert die load_dotenv() Funktion aus dem dotenv Package
+from dotenv import load_dotenv
+import Client
+#lädt Umgebungsvariablen aus der .env
+load_dotenv()
+#Der Bot Token der den Bot für die Discord Server verifiziert
+TOKEN = os.getenv('DISCORD_TOKEN')
+#Der Server Token der die App für unseren Discord verifiziert
+GUILD = os.getenv('DISCORD_GUILD')
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+intents = discord.Intents.default()
+intents.members = True
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+client = Client.Bot(intents=intents)
+client.run(TOKEN)
