@@ -1,0 +1,17 @@
+###Die Logs für den Bot###
+2021-01-09 03:58:31 dasBaum hat den Member Command genutzt
+2021-01-09 04:02:11 SYSTEM NameError bei der Initialisierung.
+2021-01-09 04:02:32 dasBaum hat den Ping Command genutzt
+2021-01-09 04:02:41 dasBaum hat den Channel Command genutzt
+2021-01-09 04:09:34 SYSTEM NameError bei der Initialisierung.
+2021-01-09 04:10:41 SYSTEM NameError bei der Initialisierung.
+2021-01-09 04:10:48 dasBaum293906586319978497 hat den Ping Command genutzt
+2021-01-09 04:12:15 SYSTEM NameError bei der Initialisierung.
+2021-01-09 04:12:23 dasBaum(293906586319978497) hat den Ping Command genutzt
+2021-01-09 04:13:47 SYSTEM NameError bei der Initialisierung.
+2021-01-09 04:13:59 dasBaum(293906586319978497) hat den Channel Command genutzt
+2021-01-09 04:14:01 dasBaum(293906586319978497) hat den Ping Command genutzt
+2021-01-09 04:14:49 dasBaum(293906586319978497) hat den Member Command genutzt
+2021-01-09 04:19:35 SYSTEM NameError bei der Initialisierung.
+2021-01-09 04:19:52 dasBaum(293906586319978497) hat den Member Command genutzt
+2021-01-09 04:19:55 dasBaum(293906586319978497) hat den Channel Command genutzt

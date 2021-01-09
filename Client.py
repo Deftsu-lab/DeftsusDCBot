@@ -1,6 +1,11 @@
 import discord
+import datetime
 
 class Bot(discord.Client):
+
+    #Pfad für die Logs
+    LogPath = "Logs.txt"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
 
@@ -14,6 +19,16 @@ class Bot(discord.Client):
                 partial_emoji_2: 1,
             }
         except NameError:
+            #Öffnet die Datei am angegebenen Pfad
+            Log = open(self.LogPath, "a")
+            #Nimmt die aktuelle Uhrzeit
+            now = datetime.datetime.now()
+            #Erstellt den Logeintrag(Uhrzeit + Nutzer + Das Ereignis
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + 'SYSTEM' + ' NameError bei der Initialisierung.'
+            #Schreibt den Logeintrag in die Datei und setzt immer einen Zeilenumbruch davor
+            Log.write('\n' + LogEntry)
+            #Schließt den Log, das Geschriebene wird damit gespeichert
+            Log.close()
             return
 
 
@@ -56,15 +71,30 @@ class Bot(discord.Client):
             return
 
         if message.content == 'ping':
+            Log = open(self.LogPath, "a")
+            now = datetime.datetime.now()
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)})' + ' ' + 'hat den Ping Command genutzt'
+            Log.write('\n' + LogEntry)
+            Log.close()
             await message.channel.send('pong')
             return
 
         if message.content == '!members':
+            Log = open(self.LogPath, "a")
+            now = datetime.datetime.now()
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)})' + ' ' + 'hat den Member Command genutzt'
+            Log.write('\n' + LogEntry)
+            Log.close()
             members = message.guild.members
             for member in members:
                 print(member.name)
 
         if message.content == '!channel':
+            Log = open(self.LogPath, "a")
+            now = datetime.datetime.now()
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)})' + ' ' + 'hat den Channel Command genutzt'
+            Log.write('\n' + LogEntry)
+            Log.close()
             channels = self.get_all_channels()
             for channel in channels:
                 print(channel.name)
