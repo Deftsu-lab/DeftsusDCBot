@@ -57,3 +57,14 @@ class Bot(discord.Client):
 
         if message.content == 'ping':
             await message.channel.send('pong')
+            return
+
+        if message.content == '!members':
+            members = message.guild.members
+            for member in members:
+                print(member.name)
+
+        if message.content == '!channel':
+            channels = self.get_all_channels()
+            for channel in channels:
+                print(channel.name)

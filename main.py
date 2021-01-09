@@ -15,5 +15,4 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
 client = Client.Bot()
-
 client.run(TOKEN)
