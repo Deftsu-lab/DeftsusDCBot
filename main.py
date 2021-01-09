@@ -15,9 +15,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 #Der Server Token der die App für unseren Discord verifiziert
 GUILD = os.getenv('DISCORD_GUILD')
 
-intents = discord.Intents.default()
-intents.
-
 def main():
     try:
         # lädt Umgebungsvariablen aus der .env
@@ -29,7 +26,7 @@ def main():
 
     finally:
         print("Laden der Umgebungsvariablen erfolgreich")
-        client = Client.Bot(intents=intents)
+        client = Client.Bot()
         client.run(TOKEN)
 
 if __name__ == "__main__":

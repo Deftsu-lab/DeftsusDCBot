@@ -1,12 +1,16 @@
 import discord
 import datetime
+from discord import Intents
+from discord import Client
 
 from discord import Guild
 from discord.ext import commands
 
 class Bot(discord.Client):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args,**kwargs)
+        super().__init__(*args,
+                         **kwargs,
+                         intents=Intents.all())
 
         #Die Rolle der Nachricht auf die reagiert werden soll
         try:
@@ -68,7 +72,6 @@ class Bot(discord.Client):
         print('Logged on as', self.user)
         print('ID:', str(self.user.id))
 
-
     async def on_member_join(self, member):
         guild = member.guild
         if guild.system_channel is not None:
@@ -101,8 +104,7 @@ class Bot(discord.Client):
             LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)}) ' + 'hat den Member Command genutzt'
             Log.write('\n' + LogEntry)
             Log.close()
-            members = Guild.fetch_members(self)
-            for member in members:
+            for member in Client.get_all_members(self):
                 print(member.name)
 
         if message.content == '!channel':
