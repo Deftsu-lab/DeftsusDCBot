@@ -9,7 +9,31 @@ async def test(ctx, arg):
     await ctx.send(arg)
 
     
+@bot.command()
+async def zähle(ctx, *args):
+    await ctx.send('{} Argumente: {}'.format(len(args), ', '.join(args)))
 
+class JoinDistance:
+    def __init__(self, joined, created):
+        self.joined = joined
+        self.created = created
+
+    @property
+    def delta(self):
+        return self.joined - self.created
+
+class JoinDistanceConverter(commands.MemberConverter):
+    async def convert(self, ctx, argument):
+        member = await super().convert(ctx, argument)
+        return JoinDistance(member.joined_at, member.created_at)
+
+@bot.command()
+async def delta(ctx, *, member: JoinDistanceConverter):
+    is_new = member.delta.days < 100
+    if is_new:
+        await ctx.send("Schön, dass du da bist melde dich doch im Channel #anmeldung für das Turnier an")
+    else:
+        await ctx.send("Dich kenn ich doch")    
 
 class Bot(discord.Client):
 
