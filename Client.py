@@ -1,50 +1,18 @@
 import discord
 import datetime
+
+from discord import Guild
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix='$')
-
-@bot.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
-
-    
-@bot.command()
-async def zähle(ctx, *args):
-    await ctx.send('{} Argumente: {}'.format(len(args), ', '.join(args)))
-
-class JoinDistance:
-    def __init__(self, joined, created):
-        self.joined = joined
-        self.created = created
-
-    @property
-    def delta(self):
-        return self.joined - self.created
-
-class JoinDistanceConverter(commands.MemberConverter):
-    async def convert(self, ctx, argument):
-        member = await super().convert(ctx, argument)
-        return JoinDistance(member.joined_at, member.created_at)
-
-@bot.command()
-async def delta(ctx, *, member: JoinDistanceConverter):
-    is_new = member.delta.days < 100
-    if is_new:
-        await ctx.send("Schön, dass du da bist melde dich doch im Channel #anmeldung für das Turnier an")
-    else:
-        await ctx.send("Dich kenn ich doch")    
-
 class Bot(discord.Client):
-
-    #Pfad für die Logs
-    LogPath = "Logs.txt"
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
 
         #Die Rolle der Nachricht auf die reagiert werden soll
         try:
+            # Pfad für die Logs
+            self.LogPath = "Logs.txt"
+            #Die ID der Message die beobachtet werden soll
             self.role_message_id = 0
             self.emoji_to_role = {
                 #das Emoji "partial_emoji_1" wird mit der Rolle mit der Id 0 verknüpft
@@ -58,7 +26,7 @@ class Bot(discord.Client):
             #Nimmt die aktuelle Uhrzeit
             now = datetime.datetime.now()
             #Erstellt den Logeintrag(Uhrzeit + Nutzer + Das Ereignis
-            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + 'SYSTEM' + ' NameError bei der Initialisierung.'
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' SYSTEM' + ' NameError bei der Initialisierung.'
             #Schreibt den Logeintrag in die Datei und setzt immer einen Zeilenumbruch davor
             Log.write('\n' + LogEntry)
             #Schließt den Log, das Geschriebene wird damit gespeichert
@@ -98,16 +66,30 @@ class Bot(discord.Client):
 
     async def on_ready(self):
         print('Logged on as', self.user)
+        print('ID:', str(self.user.id))
+
+
+    async def on_member_join(self, member):
+        guild = member.guild
+        if guild.system_channel is not None:
+            WilkommensNachricht = f'Willkommen {member.name} auf dem Turnier Server!'
+            Log = open(self.LogPath, "a")
+            now = datetime.datetime.now()
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + member.name + f'({str(member.id)}' + 'hat den Ping Command genutzt'
+            Log.write('\n' + LogEntry)
+            Log.close()
+            await guild.system_channel.send(WilkommensNachricht)
+        return
 
     async def on_message(self, message):
         #Nicht sich selber antworten, da rekursiv
         if message.author == self.user:
             return
 
-        if message.content == 'ping':
+        if message.content == '!ping':
             Log = open(self.LogPath, "a")
             now = datetime.datetime.now()
-            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)})' + ' ' + 'hat den Ping Command genutzt'
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)}) ' + 'hat den Ping Command genutzt'
             Log.write('\n' + LogEntry)
             Log.close()
             await message.channel.send('pong')
@@ -116,17 +98,17 @@ class Bot(discord.Client):
         if message.content == '!members':
             Log = open(self.LogPath, "a")
             now = datetime.datetime.now()
-            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)})' + ' ' + 'hat den Member Command genutzt'
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)}) ' + 'hat den Member Command genutzt'
             Log.write('\n' + LogEntry)
             Log.close()
-            members = message.guild.members
+            members = Guild.fetch_members(self)
             for member in members:
                 print(member.name)
 
         if message.content == '!channel':
             Log = open(self.LogPath, "a")
             now = datetime.datetime.now()
-            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)})' + ' ' + 'hat den Channel Command genutzt'
+            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)}) ' + 'hat den Channel Command genutzt'
             Log.write('\n' + LogEntry)
             Log.close()
             channels = self.get_all_channels()
