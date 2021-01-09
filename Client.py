@@ -5,13 +5,17 @@ class Bot(discord.Client):
         super().__init__(*args,**kwargs)
 
         #Die Rolle der Nachricht auf die reagiert werden soll
-        self.role_message_id = 0
-        self.emoji_to_role = {
-            #das Emoji "partial_emoji_1" wird mit der Rolle mit der Id 0 verknüpft
-            partial_emoji_1: 0,
-            # das Emoji "partial_emoji_2" wird mit der Rolle mit der Id 1 verknüpft
-            partial_emoji_2: 1,
-        }
+        try:
+            self.role_message_id = 0
+            self.emoji_to_role = {
+                #das Emoji "partial_emoji_1" wird mit der Rolle mit der Id 0 verknüpft
+                partial_emoji_1: 0,
+                # das Emoji "partial_emoji_2" wird mit der Rolle mit der Id 1 verknüpft
+                partial_emoji_2: 1,
+            }
+        except NameError:
+            return
+
 
     async def on_raw_reaction_add(self, payload):
         #Stellt sicher dass die Nachricht auf die Reagiert wurde die Nachricht ist, auf die der Bot achten soll

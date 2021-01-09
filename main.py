@@ -14,8 +14,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 #Der Server Token der die App für unseren Discord verifiziert
 GUILD = os.getenv('DISCORD_GUILD')
 
-intents = discord.Intents.default()
-intents.members = True
+client = Client.Bot()
 
-client = Client.Bot(intents=intents)
 client.run(TOKEN)
