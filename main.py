@@ -7,7 +7,6 @@ from discord.ext import commands
 #Importiert die load_dotenv() Funktion aus dem dotenv Package
 from dotenv import load_dotenv
 import Client
-
 # lädt Umgebungsvariablen aus der .env
 load_dotenv()
 #Der Bot Token der den Bot für die Discord Server verifiziert

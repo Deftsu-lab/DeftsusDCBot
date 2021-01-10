@@ -3,6 +3,9 @@ import discord
 import datetime
 from discord import Intents
 from dotenv import load_dotenv
+intents = discord.Intents.default()
+intents.members = True
+
 
 class Bot(discord.Client):
 
@@ -143,7 +146,6 @@ class Bot(discord.Client):
             for channel in self.guild.channels:
                 print(channel)
 
-        #Funktioniert noch nicht
         if message.content == '!interessiert':
             Log = open(self.LogPath, "a")
             now = datetime.datetime.now()
@@ -155,3 +157,4 @@ class Bot(discord.Client):
                 await member.add_roles(self.guild.get_role(int(self.INTERESTED)))
             finally:
                 print('Hinzufügen des Users erfolgreich')
+
