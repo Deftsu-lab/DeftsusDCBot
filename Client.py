@@ -3,16 +3,21 @@ import discord
 import datetime
 from discord import Intents
 from dotenv import load_dotenv
-intents = discord.Intents.default()
-intents.members = True
+from discord.ext import commands
 
-
-class Bot(discord.Client):
+class Bot(commands.Bot):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,
                          **kwargs,
-                         intents=Intents.all())
+                         intents=Intents.all(),
+                         command_prefix='%')
+
+        @commands.command()
+        async def ping(ctx):
+            await ctx.send('Hat geklappt')
+
+        Bot.add_command(self, command=ping)
 
         #Die Rolle der Nachricht auf die reagiert werden soll
         try:
@@ -46,7 +51,6 @@ class Bot(discord.Client):
             #Schließt den Log, das Geschriebene wird damit gespeichert
             Log.close()
             return
-
 
     async def on_raw_reaction_add(self, payload):
         #Stellt sicher dass die Nachricht auf die Reagiert wurde die Nachricht ist, auf die der Bot achten soll
@@ -157,4 +161,6 @@ class Bot(discord.Client):
                 await member.add_roles(self.guild.get_role(int(self.INTERESTED)))
             finally:
                 print('Hinzufügen des Users erfolgreich')
+
+        await Bot.process_commands(self, message)
 
