@@ -29,7 +29,6 @@ def main():
         client = Client.Bot()
         client.run(TOKEN)
 
-
 if __name__ == "__main__":
     main()
 

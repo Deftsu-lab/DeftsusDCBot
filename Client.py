@@ -13,11 +13,18 @@ class Bot(commands.Bot):
                          intents=Intents.all(),
                          command_prefix='%')
 
-        @commands.command()
-        async def ping(ctx):
-            await ctx.send('Hat geklappt')
 
-        Bot.add_command(self, command=ping)
+
+#Hier starten die Commands für den Bot
+        @Bot.command(self)
+        async def members(ctx):
+            for member in self.guild.members:
+                await ctx.send(member.name)
+
+        @Bot.command(self)
+        async def zähle(ctx, *args):
+            await ctx.send('{} arguments: {}'.format(len(args), ', '.join(args)))
+
 
         #Die Rolle der Nachricht auf die reagiert werden soll
         try:
@@ -118,7 +125,18 @@ class Bot(commands.Bot):
             await guild.system_channel.send(WilkommensNachricht)
         return
 
+
+
     async def on_message(self, message):
+        # Hier startet die Routine, die Nachrichten Tracken soll
+        guild = message.guild
+
+        if guild:
+            path = "chatlogs/{}.txt".format(guild.id)
+            with open(path, 'a+') as f:
+                now = datetime.datetime.now()
+                print(now.strftime("%Y-%m-%d %H:%M:%S") + " : {0.author.name} : {0.content}".format(message), file=f)
+
         #Nicht sich selber antworten, da rekursiv
         if message.author == self.user:
             return
@@ -131,15 +149,6 @@ class Bot(commands.Bot):
             Log.close()
             await message.channel.send('pong')
             return
-
-        if message.content == '!members':
-            Log = open(self.LogPath, "a")
-            now = datetime.datetime.now()
-            LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + message.author.name + f'({str(message.author.id)}) ' + 'hat den Member Command genutzt'
-            Log.write('\n' + LogEntry)
-            Log.close()
-            for member in self.guild.members:
-                print(member.name)
 
         if message.content == '!channel':
             Log = open(self.LogPath, "a")
