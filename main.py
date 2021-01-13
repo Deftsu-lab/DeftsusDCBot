@@ -26,7 +26,7 @@ def main():
 
     finally:
         print("Laden der Umgebungsvariablen erfolgreich")
-        client = Client.Bot()
+        client = Client.Whisper()
         client.run(TOKEN)
 
 if __name__ == "__main__":
