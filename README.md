@@ -8,3 +8,6 @@ https://discordpy.readthedocs.io/en/latest/api.html#event-reference
 
 #Für Ben, virtual enviroment doku
 https://docs.python.org/3/library/venv.html#module-venv
+
+#Reaction Role 
+https://www.youtube.com/watch?v=MgCJG8kkq50
