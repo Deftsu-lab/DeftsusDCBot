@@ -1,0 +1,15 @@
+#Integration einer React Rollenvergabe
+        welcome_channel = Bot.get_channel(self, welcome_channel_id)
+        await welcome_channel.send("Willkommen auf sem Turnierserver des <Cupname folgt> wenn du als Teilnehmer des Turnieres hier bist reagiere bitte mit 🏵")
+
+    async def on_reaction_add(self, reaction, member):
+        Turnierteilnehmer = discord.utils.get(member.guild.roles, name = 'Turnierteilnehmer')
+        if str(reaction.emoji) == "🏵":
+            await member.add_roles(Turnierteilnehmer)
+
+
+
+
+
+
+

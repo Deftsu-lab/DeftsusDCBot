@@ -4,6 +4,8 @@ import datetime
 from discord import Intents
 from dotenv import load_dotenv
 from discord.ext import commands
+import time
+
 
 class Bot(commands.Bot):
 
@@ -12,18 +14,57 @@ class Bot(commands.Bot):
                          **kwargs,
                          intents=Intents.all(),
                          command_prefix='%')
+#Reaction Role
+        @Bot.event
+        async def on_raw_reaction_add(payload):
+            message_id = payload.message_id
+            if message_id == 798873790875435019:
+                guild_id = payload.guild_id
+                guild = discord.utils.find(lambda g : g.id == guild_id, Bot.guilds)
 
+                role = discord.utils.get(guild.roles, name = payload.emoji.name)
 
+                if role is not None:
+                    member = discord.utils.find(lambda  m : m.id == payload.user_id, guild.members)
+                    if member is not None:
+                        await member.add_role(role)
+                        print("Done")
+                    else:
+                        print("Person nicht gefunden.")
+                else:
+                    print("Rolle nicht gefunden")
+
+        @Bot.event
+        async def on_raw_reaction_remove(payload):
+            pass
 
 #Hier starten die Commands für den Bot
+        @Bot.command(self)
+        async def ping(ctx):
+            before = time.monotonic()
+            ping = (time.monotonic() - before) * 1000
+            await ctx.send(f'Pong {int(ping)}ms')
+
+
+        @Bot.command(self)
+        async def channel(ctx):
+            for channel in self.guild.channels:
+               await ctx.send(channel)
+
         @Bot.command(self)
         async def members(ctx):
             for member in self.guild.members:
                 await ctx.send(member.name)
 
+
         @Bot.command(self)
         async def zähle(ctx, *args):
             await ctx.send('{} arguments: {}'.format(len(args), ', '.join(args)))
+
+        @Bot.command(self)
+        async def announce(ctx, str):
+            ctx.channel = Bot.get_channel(self, id=794908890147717131)
+            await ctx.channel.send("@everyone\n Die nächste Runde startet um " + str +" Uhr. Good Luck, Have Fun!")
 
 
         #Die Rolle der Nachricht auf die reagiert werden soll
@@ -59,35 +100,7 @@ class Bot(commands.Bot):
             Log.close()
             return
 
-    async def on_raw_reaction_add(self, payload):
-        #Stellt sicher dass die Nachricht auf die Reagiert wurde die Nachricht ist, auf die der Bot achten soll
-        if payload.message_id != self.role_message_id:
-            return
 
-        try:
-            role_id = self.emoji_to_role[payload.emoji]
-        except KeyError:
-            #Wenn der Emoji nicht der ist, auf den wir achten wollen, verlasse die Funktion
-            return
-
-        #Nimmt sich die Id des Servers auf dem der Bot im Moment ist
-        guild = self.get_guild(payload.guild_id)
-
-        if guild is None:
-            #Überprüft ob der Bot auf einem Server ist
-            return
-
-        role = guild.get_role(role_id)
-        if role is None:
-            #Überprüft ob die Rolle noch gültig ist
-            return
-
-        try:
-            #Gibt Nutzer die Rolle
-            await payload.member.add_roles(role)
-        except discord.HTTPException:
-            #Hier einfügen was im Falle eines Fehlers passieren soll
-            pass
 
     async def on_ready(self):
         self.guild = self.get_guild(int(self.GUILD))
@@ -116,7 +129,7 @@ class Bot(commands.Bot):
     async def on_member_join(self, member):
         guild = member.guild
         if guild.system_channel is not None:
-            WilkommensNachricht = f'Willkommen {member.name} auf dem Turnier Server!'
+            WilkommensNachricht = f'Willkommen {member.name} auf dem Turnier Server! Bitte gehe in den Channel Rollenvergabe um deine Rollen zu wählen!'
             Log = open(self.LogPath, "a")
             now = datetime.datetime.now()
             LogEntry = now.strftime("%Y-%m-%d %H:%M:%S") + ' ' + member.name + f'({str(member.id)}' + 'hat den Ping Command genutzt'
@@ -172,4 +185,5 @@ class Bot(commands.Bot):
                 print('Hinzufügen des Users erfolgreich')
 
         await Bot.process_commands(self, message)
+
 
