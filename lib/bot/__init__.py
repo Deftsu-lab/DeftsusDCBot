@@ -2,18 +2,21 @@ from asyncio import sleep
 from datetime import datetime
 from glob import glob
 
+from discord.errors import HTTPException, Forbidden
 from discord import Intents
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 from discord import Embed, File
 from discord.ext.commands import Bot as BotBase
-from discord.ext.commands import CommandNotFound
+from discord.ext.commands import Context
+from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument)
 
 from ..db import db
 
 PREFIX = ">"
 OWNER_IDS = [316985703152091146]
 COGS = [path.split("\\")[-1][:-3] for path in glob("./lib/Cogs/*.py")]
+IGNORE_EXCEPTIONS = (CommandNotFound, BadArgument)
 
 
 class Ready(object):
@@ -61,6 +64,16 @@ class Whisper(BotBase):
         print("Whisper lädt nach...")
         super().run(self.TOKEN, reconnect = True)
 
+    async def process_commands(self, message):
+        ctx = await self.get_context(message, cls=Context)
+
+        if ctx.command is not None and ctx.guild is not None:
+            if self.ready:
+                await self.invoke(ctx)
+
+            else:
+                await ctx.send("Ich bin noch nicht bereit für Kommandos, bitte warte noch einen Augenblick.")
+
     async def print_message(self):
         await self.stdout.send("HIER KANNST DU DEIN ANNOUNCEMENT JEDE STUNDE REIN TUN")
 
@@ -78,13 +91,20 @@ class Whisper(BotBase):
         raise
 
     async def on_command_error(self, ctx, exc):
-        if isinstance(exc, CommandNotFound):
-            await ctx.send("Command nicht gefunden")
+        if any(isinstance(exc, error) for error in IGNORE_EXCEPTIONS):
+            pass
 
-        elif hasattr(exc, "original"):
-            raise exc.original
+        elif isinstance(exc, MissingRequiredArgument):
+            await ctx.send("Ein oder mehr benötigte Argumente fehlen")
+
+        elif isinstance(exc, HTTPException):
+            await ctx.send("Kann ich nicht")
+
+        elif isinstance(exc.original, Forbidden):
+            await ctx.send("Ich darf das nicht tun!")
+
         else:
-            raise exc
+            raise exc.original
 
     async def on_ready(self):
         if not self.ready:
@@ -118,7 +138,8 @@ class Whisper(BotBase):
             print("Bot verbunden")
 
     async def on_message(self, message):
-        pass
+        if not message.author.bot:
+            await self.process_commands(message)
 
 
 bot = Whisper()
