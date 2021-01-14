@@ -12,6 +12,8 @@ https://docs.python.org/3/library/venv.html#module-venv
 #Reaction Role 
 https://www.youtube.com/watch?v=MgCJG8kkq50
 
+##Role Reaction
+
 @Whisper.event
 async def on_raw_reaction_add(payload):
     message_id = payload.message_id
@@ -50,3 +52,28 @@ async def on_raw_reaction_remove(payload):
                 print("Person nicht gefunden.")
         else:
             print("Rolle nicht gefunden")
+
+
+##Error Handling
+    async def on_error(self, err, *args, **kwargs):
+        if err == "on_command_error":
+            await args[0].send("Das ist ja gestern nicht so gut gelaufen.")
+
+        await self.stdout.send("Da passiert doch was! Nämlich ein Fehler.")
+        raise
+
+    async def on_command_error(self, ctx, exc):
+        if any(isinstance(exc, error) for error in IGNORE_EXCEPTIONS):
+            pass
+
+        elif isinstance(exc, MissingRequiredArgument):
+            await ctx.send("Ein oder mehr benötigte Argumente fehlen")
+
+        elif isinstance(exc, HTTPException):
+            await ctx.send("Kann ich nicht")
+
+        elif isinstance(exc.original, Forbidden):
+            await ctx.send("Ich darf das nicht tun!")
+
+        else:
+            raise exc.original
