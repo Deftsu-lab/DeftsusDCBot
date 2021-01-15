@@ -35,8 +35,7 @@ class Log(Cog):
 
         if before.discriminator != after.discriminator:
 
-            embed = Embed(title="Member update",
-                          description="neuer Discriminator",
+            embed = Embed(title="Discriminator update",
                           colour=after.colour,
                           timestamp=datetime.utcnow())
 
@@ -78,7 +77,7 @@ class Log(Cog):
             await self.log_channel.send(embed=embed)
 
         elif before.roles != after.roles:
-            embed = Embed(title="Member update",
+            embed = Embed(title="Rollen",
                           description="neue Rollenvergabe",
                           colour=after.colour,
                           timestamp= datetime.utcnow())
@@ -97,13 +96,35 @@ class Log(Cog):
     @Cog.listener()
     async def on_message_edit(self, before, after):
         if not after.author.bot:
-            pass
+            if before.content != after.content:
+                embed = Embed(title="Nachrichten Edit",
+                              description=f"Geändert von {before.author.display_name}",
+                              colour=after.author.colour,
+                              timestamp=datetime.utcnow())
+
+                fields = [("Vorher", before.content, False),
+                          ("After", after.content, False)]
+
+                for name, value, inline in fields:
+                    embed.add_field(name=name, value=value, inline=inline)
+
+                await self.log_channel.send(embed=embed)
 
 
     @Cog.listener()
-    async def on_message_delete(self, before, after):
-        if not after.author.bot:
-            pass
+    async def on_message_delete(self, message):
+        if not message.author.bot:
+            embed = Embed(title="Nachricht wurde gelöscht",
+                          description=f"Gelöscht von {message.author.display_name}",
+                          colour=message.author.colour,
+                          timestamp=datetime.utcnow())
+
+            fields = [("Inhalt:", message.content, False)]
+
+            for name, value, inline in fields:
+                embed.add_field(name=name, value=value, inline=inline)
+
+            await self.log_channel.send(embed=embed)
 
 
 def setup(bot):
