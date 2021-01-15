@@ -9,7 +9,7 @@ from apscheduler.triggers.cron import CronTrigger
 from discord import Embed, File
 from discord.ext.commands import Bot as BotBase
 from discord.ext.commands import Context
-from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument)
+from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredArgument, CommandOnCooldown)
 
 from ..db import db
 
@@ -97,14 +97,22 @@ class Whisper(BotBase):
         elif isinstance(exc, MissingRequiredArgument):
             await ctx.send("Ein oder mehr benötigte Argumente fehlen")
 
-        elif isinstance(exc, HTTPException):
-            await ctx.send("Kann ich nicht")
+        elif isinstance(exc, CommandOnCooldown):
+            await ctx.send(f"Das Command hat Ablinkzeit. Versuch es in {exc.retry_after:,.2f} Sekunden")
 
-        elif isinstance(exc.original, Forbidden):
-            await ctx.send("Ich darf das nicht tun!")
+        elif hasattr(exc, "original"):
+
+            if isinstance(exc, HTTPException):
+                await ctx.send("Kann ich nicht")
+
+            if isinstance(exc.original, Forbidden):
+                await ctx.send("Ich darf das nicht tun!")
+
+            else:
+                raise exc.original
 
         else:
-            raise exc.original
+            raise exc
 
     async def on_ready(self):
         if not self.ready:

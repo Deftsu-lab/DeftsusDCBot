@@ -1,10 +1,10 @@
 from random import choice, randint
 from typing import Optional
-
+from aiohttp import request
 from discord import Member
 from discord.ext.commands import BadArgument
-from discord.ext.commands import Cog
-from discord.ext.commands import command
+from discord.ext.commands import Cog, BucketType
+from discord.ext.commands import command, cooldown
 
 class Fun(Cog):
     def __init__(self, bot):
@@ -40,6 +40,22 @@ class Fun(Cog):
     async def echo_message(self, ctx, *, message):
         await ctx.message.delete()
         await ctx.send(message)
+
+
+    @command(name="meme")
+    @cooldown(1, 20, BucketType.user)
+    async def get_meme(self, ctx):
+        URL = "https://some-random-api.ml/meme"
+
+        async with request("GET", URL, headers={}) as response:
+            if response.status == 200:
+                data = await response.json()
+                await ctx.send(data["image"])
+                await ctx.send(data["caption"])
+
+            else:
+                await ctx.send(f"API hat {response.status} Status zurück gegeben.")
+
 
     @Cog.listener()
     async def on_ready(self):
