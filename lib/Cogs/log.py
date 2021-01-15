@@ -1,7 +1,5 @@
 from datetime import datetime
-
 from discord.ext.commands import Cog
-from discord.ext.commands import command
 from discord import Embed
 
 

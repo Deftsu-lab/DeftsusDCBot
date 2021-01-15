@@ -1,5 +1,4 @@
 from discord.ext.commands import Cog
-from discord.ext.commands import command
 from discord import Forbidden
 
 from ..db import db
