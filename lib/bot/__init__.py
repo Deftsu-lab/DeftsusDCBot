@@ -74,8 +74,8 @@ class Whisper(BotBase):
             else:
                 await ctx.send("Ich bin noch nicht bereit für Kommandos, bitte warte noch einen Augenblick.")
 
-    async def print_message(self):
-        await self.stdout.send("HIER KANNST DU DEIN ANNOUNCEMENT JEDE STUNDE REIN TUN")
+#   async def print_message(self):
+#        await self.stdout.send("HIER KANNST DU DEIN ANNOUNCEMENT JEDE STUNDE REIN TUN")
 
     async def on_connect(self):
         print("Bot verbunden")
@@ -118,29 +118,17 @@ class Whisper(BotBase):
         if not self.ready:
             self.guild = self.get_guild(794869585224007680)
             self.stdout = self.get_channel(797248019245563924)
-            self.scheduler.add_job(self.print_message, CronTrigger(minute=0, second=0))
+            #self.scheduler.add_job(self.print_message, CronTrigger(minute=0, second=0))
             self.scheduler.start()
 
-#            await self.stdout.send("Bot online")
-
-#            embed = Embed(title="Whisper geladen(Lmao Wortwitz)", description="Der Bot ist online und bereit",
-#                          colour=0xFF0000, timestamp=datetime.utcnow())
-#            fields = [("Name", "Value", True),
-#                      ("Noch ein Feld", "Dieses Feld ist neben dem Anderem!", True),
-#                      ("Ein Feld, dass selbstsüchtig ist", "Dieses Feld hat seine eigene Reihe", False)]
-#            for name, value, inline in fields:
-#                embed.add_field(name=name, value=value, inline=inline)
-#            embed.set_author(name="Nicht Eric sondern Ben", icon_url=self.guild.icon_url)
-#            embed.set_footer(text="Das ist eine Fußzeile!")
-#            embed.set_thumbnail(url=self.guild.icon_url)
-#            embed.set_image(url=self.guild.icon_url)
-#            await channel.send(embed=embed)
+            await self.stdout.send("Bot online")
 
             while not self.cogs_ready.all_ready():
                 await sleep(0.5)
 
             self.ready = True
             print("Whisper geladen! Lmao wasn Wortwitz")
+
 
         else:
             print("Bot verbunden")

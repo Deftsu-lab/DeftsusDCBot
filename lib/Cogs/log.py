@@ -80,8 +80,8 @@ class Log(Cog):
                           colour=after.colour,
                           timestamp= datetime.utcnow())
 
-            fields = [("Vorher", ",".join([r.mention for r in before.roles[1:]]), False),
-                      ("After", ",".join([r.mention for r in after.roles[1:]]), False)]
+            fields = [("Vorher", ",".join([r.mention for r in before.roles[1:]]) if before.roles else 'N/A', False),
+                      ("After", ",".join([r.mention for r in after.roles[1:]])if after.roles else 'N/A', False)]
 
             for name, value, inline in fields:
                 embed.add_field(name=name, value=value, inline=inline)
