@@ -15,9 +15,9 @@ class Welcome(Cog):
 
     @Cog.listener()
     async def on_member_join(self, member):
-        db.execute("INSERT INTO exp (UserID) VALUES (?)", member.id)
         await self.bot.get_channel(798550966168191006).send(
-            f"Willkommen auf unserem Turnierserver {member.mention}! Bitten begib in <#798873634553856021> um deine Rolle zu bekommen!")
+            f"Willkommen auf unserem Turnierserver {member.mention}! Bitten begib in <#798873634553856021> um deine Rolle zu bekommen!"
+            f"Gehe bitte auch in <#804394925307068437> und lies dir unsere Regeln durch")
 
         try:
             await member.send(f"Willkommen auf **{member.guild.name}**! Genieße den Aufenthalt")
@@ -25,11 +25,10 @@ class Welcome(Cog):
         except Forbidden:
             pass
 
-        await member.add_roles(member.guild.get_role(799381512201044018))
-
     @Cog.listener()
     async def on_member_leave(self, member):
-        db.execute("DELETE FROM exp WHERE UserID = ?", member.id)
+        pass
+
 
 
 def setup(bot):
