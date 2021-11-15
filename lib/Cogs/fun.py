@@ -5,6 +5,10 @@ from discord import Member
 from discord.ext.commands import BadArgument
 from discord.ext.commands import Cog, BucketType
 from discord.ext.commands import command, cooldown
+import random
+
+
+
 
 class Fun(Cog):
     def __init__(self, bot):
@@ -55,6 +59,16 @@ class Fun(Cog):
 
             else:
                 await ctx.send(f"API hat {response.status} Status zurück gegeben.")
+
+
+
+    @command(name="Münze", aliases=["Coinflip", "coin", "Münzwurf"])
+    async def coinflip(self, ctx):
+        choices = ["Kopf", "Zahl"]
+        rancoin = random.choice(choices)
+        await ctx.send(rancoin)
+
+
 
 
     @Cog.listener()

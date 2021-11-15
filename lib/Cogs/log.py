@@ -78,10 +78,10 @@ class Log(Cog):
             embed = Embed(title="Rollen",
                           description="neue Rollenvergabe",
                           colour=after.colour,
-                          timestamp= datetime.utcnow())
+                          timestamp=datetime.utcnow())
 
-            fields = [("Vorher", ",".join([r.mention for r in before.roles[1:]]) if before.roles else 'N/A', False),
-                      ("After", ",".join([r.mention for r in after.roles[1:]])if after.roles else 'N/A', False)]
+            fields = [("Vorher", "," .join([r.mention for r in before.roles[1:]]) if before.roles is not None else 'N/A', False),
+                      ("After", "," .join([r.mention for r in after.roles[1:]]) if after.roles else 'N/A', False)]
 
             for name, value, inline in fields:
                 embed.add_field(name=name, value=value, inline=inline)

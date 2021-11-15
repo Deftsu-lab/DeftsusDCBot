@@ -1,0 +1,106 @@
+2021-01-12 01:48:13 : Insecure VirJhin | Ben : dsg
+2021-01-12 01:48:15 : Insecure VirJhin | Ben : dgsgsdgrs
+2021-01-12 01:48:16 : Insecure VirJhin | Ben : sdrtgsedrg
+2021-01-12 01:48:17 : Insecure VirJhin | Ben : dsfbsgdhrtgs
+2021-01-12 01:48:19 : Insecure VirJhin | Ben : sdfgsdtrgzrsethgsht
+2021-01-12 01:48:20 : Insecure VirJhin | Ben : fghjdfzh
+2021-01-12 01:48:23 : Insecure VirJhin | Ben : test
+2021-01-12 01:48:25 : Insecure VirJhin | Ben : chatlog
+2021-01-12 01:59:33 : Insecure VirJhin | Ben : %members
+2021-01-12 01:59:33 : Whisper : Paffolter
+2021-01-12 01:59:33 : Whisper : Naxay
+2021-01-12 01:59:34 : Whisper : Slawusch
+2021-01-12 01:59:34 : Whisper : dasBaum
+2021-01-12 01:59:34 : Whisper : Insecure VirJhin | Ben
+2021-01-12 01:59:38 : Whisper : OVGU Calivia
+2021-01-12 01:59:39 : Whisper : V4_Sparkyy
+2021-01-12 01:59:39 : Whisper : Whisper
+2021-01-12 01:59:39 : Whisper : TestUser
+2021-01-12 02:00:22 : Insecure VirJhin | Ben : %zähle eins zwei drei "diese hier sind vier"
+2021-01-12 02:00:22 : Whisper : 4 arguments: eins, zwei, drei, diese hier sind vier
+2021-01-12 02:02:11 : Insecure VirJhin | Ben : %zähle test test test test
+2021-01-12 02:02:11 : Whisper : 4 arguments: test, test, test, test
+2021-01-12 12:19:19 : Insecure VirJhin | Ben : >announce Test von announce command
+2021-01-12 12:19:20 : Whisper : ('Test', 'von', 'announce', 'command')
+2021-01-12 12:34:28 : Insecure VirJhin | Ben : >announce 13 13:15
+2021-01-12 12:35:06 : Insecure VirJhin | Ben : >announce "13", "13:15"
+2021-01-12 12:36:00 : Insecure VirJhin | Ben : >announce "13", "13:15"
+2021-01-12 12:50:35 : Insecure VirJhin | Ben : >announce 13
+2021-01-12 12:53:34 : Insecure VirJhin | Ben : >announce 13
+2021-01-12 12:56:01 : Insecure VirJhin | Ben : >announce 13
+2021-01-12 12:57:28 : Insecure VirJhin | Ben : >announce 13
+2021-01-12 12:57:28 : Whisper : @Turnierteilnehmer
+ Die nächste Runde startet um13Uhr
+2021-01-12 12:59:20 : Insecure VirJhin | Ben : >announce 13
+2021-01-12 12:59:20 : Whisper : @everyone
+ Die nächste Runde startet um 13 Uhr
+2021-01-12 13:54:37 : Insecure VirJhin | Ben : >ping
+2021-01-12 14:04:29 : Insecure VirJhin | Ben : >ping
+2021-01-12 14:07:30 : Insecure VirJhin | Ben : >ping
+2021-01-12 14:07:30 : Whisper : Pong 0ms
+2021-01-12 14:09:25 : Insecure VirJhin | Ben : >ping
+2021-01-12 14:09:25 : Whisper : Pong 0ms
+2021-01-12 14:09:36 : Insecure VirJhin | Ben : >members
+2021-01-12 14:09:36 : Whisper : Paffolter
+2021-01-12 14:09:36 : Whisper : Naxay
+2021-01-12 14:09:36 : Whisper : Slawusch
+2021-01-12 14:09:37 : Whisper : dasBaum
+2021-01-12 14:09:37 : Whisper : Insecure VirJhin | Ben
+2021-01-12 14:09:41 : Whisper : OVGU Calivia
+2021-01-12 14:09:42 : Whisper : V4_Sparkyy
+2021-01-12 14:09:42 : Whisper : Whisper
+2021-01-12 14:09:42 : Whisper : TestUser
+2021-01-12 14:12:37 : Insecure VirJhin | Ben : >channel
+2021-01-12 14:13:16 : Insecure VirJhin | Ben : >channel
+2021-01-12 14:13:42 : Insecure VirJhin | Ben : >channel
+2021-01-12 14:14:12 : Insecure VirJhin | Ben : >channel
+2021-01-12 14:14:13 : Whisper : eingangshalle
+2021-01-12 14:14:13 : Whisper : Cup
+2021-01-12 14:14:13 : Whisper : anmeldung
+2021-01-12 14:14:13 : Whisper : announcements
+2021-01-12 14:14:13 : Whisper : Support
+2021-01-12 14:14:18 : Whisper : fragen-und-antworten
+2021-01-12 14:14:18 : Whisper : problem
+2021-01-12 14:14:18 : Whisper : Wir müssen reden
+2021-01-12 14:14:19 : Whisper : Wir müssen reden 2
+2021-01-12 14:14:19 : Whisper : Das Team
+2021-01-12 14:14:23 : Whisper : Meetings
+2021-01-12 14:14:23 : Whisper : fortschritte
+2021-01-12 14:14:24 : Whisper : probleme
+2021-01-12 14:14:24 : Whisper : generelles
+2021-01-12 14:14:24 : Whisper : test
+2021-01-12 16:20:05 : Insecure VirJhin | Ben : <@!290932315083767810>  auf die nachricht hier drüber bitte
+2021-01-12 16:20:45 : Insecure VirJhin | Ben : ne warte so
+2021-01-12 16:20:54 : Insecure VirJhin | Ben : so wie ich bei deiner
+2021-01-12 16:21:46 : Insecure VirJhin | Ben : ok danke war sher aufschlussreich
+2021-01-12 16:21:50 : Slawusch : xD
+2021-01-12 16:21:54 : Slawusch : Habe keine Rolle erhalten
+2021-01-12 16:22:03 : Insecure VirJhin | Ben : ja ich aber ne fehlermeldung
+2021-01-12 16:22:16 : Slawusch : hmm
+2021-01-12 16:22:39 : Slawusch : Dir dann noch gutes Gelingen!
+2021-01-12 16:22:43 : Insecure VirJhin | Ben : danke
+2021-01-12 17:34:38 : Paffolter : Sollen wir zukünftige Dokumente und so ab jetzt hier reinschmeissen?
+2021-01-12 17:39:33 : Insecure VirJhin | Ben : können wir
+2021-01-12 17:39:54 : Insecure VirJhin | Ben : das ist so eingerichtet, dass nur wir das sehen können
+2021-01-13 21:54:06 : Insecure VirJhin | Ben : >send <:Turnierteilnehmer:798880013285195796>
+2021-01-13 21:54:27 : Insecure VirJhin | Ben : >send halle
+2021-01-13 21:54:51 : Insecure VirJhin | Ben : >send test
+2021-01-13 21:54:51 : Whisper : ('test',)
+2021-01-13 22:02:34 : Insecure VirJhin | Ben : >slap
+2021-01-13 22:02:50 : Insecure VirJhin | Ben : >slap eric
+2021-01-13 22:02:50 : Whisper : Insecure VirJhin | Ben#2998 slapped SklavenBen#3904 because *eric*
+2021-01-13 22:05:38 : Insecure VirJhin | Ben : >slap Fehler
+2021-01-13 22:05:39 : Whisper : Insecure VirJhin | Ben#2998 hat Whisper#7280, weil *Fehler* geschlagen
+2021-01-13 22:07:24 : Insecure VirJhin | Ben : >clean
+2021-01-13 22:07:47 : Insecure VirJhin | Ben : >clean
+2021-01-13 22:08:08 : Insecure VirJhin | Ben : >clean clean
+2021-01-13 22:08:08 : Whisper : clean
+2021-01-13 22:08:33 : Insecure VirJhin | Ben : >clean Insecure VirJhin | Ben#2998 hat Whisper#7280, weil Fehler geschlagen
+2021-01-13 22:08:34 : Whisper : Insecure VirJhin | Ben#2998 hat Whisper#7280, weil Fehler geschlagen
+2021-01-13 22:09:06 : Insecure VirJhin | Ben : >clean Baum Apfel Arschloch Handy Scheiße
+2021-01-13 22:09:06 : Whisper : Baum Apfel Arschloch Handy Scheiße
+2021-01-13 22:11:29 : Insecure VirJhin | Ben : >joined Whisper
+2021-01-13 22:11:47 : Insecure VirJhin | Ben : >joined Whisper
+2021-01-13 22:11:47 : Whisper : Whisper#7280 joined on 2021-01-09 09:05:36.227000
+2021-01-13 22:12:21 : Insecure VirJhin | Ben : >joined Naxay
+2021-01-13 22:12:21 : Whisper : Naxay#0665 joined on 2021-01-08 19:53:11.267000
